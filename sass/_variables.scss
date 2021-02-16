@@ -1,0 +1,28 @@
+
+$colors: (
+	primary:#191D23,
+	secondary:#3A3C40,
+	auxiliar:#FF6919
+);
+
+$devise:(
+	tiny:300px,
+	small:600px,
+	medium:900px,
+	large:1100px
+);
+
+@function color($type){
+	@return map-get($colors,$type);
+}
+
+@function color-text($background){
+	@if (lightness($background)>40%){
+		@return black;
+	} 
+	@return lightgrey;
+}
+
+@function devise($type){
+	@return map-get($devise,$type);
+}

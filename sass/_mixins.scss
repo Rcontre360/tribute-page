@@ -1,0 +1,34 @@
+@import "variables";
+
+@mixin theme($background: color(primary)){
+	background:$background;
+	color:color-text($background);
+}
+
+@mixin flex($direction:row,$position:center){
+	display: flex;
+	flex-direction: $direction;
+	justify-content: $position;
+	@if ($direction==row or $direction==row-reverse){
+		align-items: center;
+	} @else {
+		align-items:$position;
+	}
+}
+
+@mixin media($size){
+	@media (max-width: $size){
+		@content;
+	}
+}
+
+@mixin hover($color:color(auxiliar)){
+	&:hover{
+		color:$color;
+		transition: 1s;
+	}
+}
+
+@mixin transition($time:0.5s){
+	transition:all $time ease-in-out;
+}
