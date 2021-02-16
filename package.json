@@ -1,0 +1,12 @@
+{
+  "name": "tributePage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev":"concurrently \"http-server\" \"sass --watch sass:css\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

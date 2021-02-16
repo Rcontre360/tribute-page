@@ -1,0 +1,101 @@
+
+*{
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+body{
+	@include theme;
+	font-family: "Goudy Bookletter 1911", sans-serif;
+}
+
+li{
+	list-style: none;
+}
+
+a{
+	color:lightgrey;
+	text-decoration: none;
+}
+
+#main{
+	@include theme(color(secondary));
+	position:relative;
+	text-align: center;
+	margin:auto;
+	min-height: 100vh;
+	max-width: 1000px;
+}
+
+.navbar{
+	@include theme(color(primary));
+	@include media(devise(small)){
+		&.active{
+			height: 100vh;
+		}
+		&.active #{&}-list{
+			@include flex(column);
+			padding-top:15vh;
+		}
+	}
+	position:fixed;
+	top:0;
+	right:0;
+	left:0;
+	z-index: 150;
+	#{&}-icon{
+		z-index: 300;
+		cursor: pointer;
+		@mixin bar($top,$width:25px){
+			position:absolute;
+			top:$top;
+			width:$width;
+			height: 2px;
+			background:white;
+		}
+		.burger-icon{
+			@include transition(0.3s);
+			@include bar(10px);
+			top:20px;
+			right:15px;
+			&::after{
+				@include bar(7px);
+				content:"";
+			}
+			&::before{
+				@include bar(14px,15px);
+				content:"";
+			}
+			&.active{
+				@include transition(0.3s);
+				transform: rotate(720deg);
+				background:transparent;
+				&::after{
+					transform: translate(0px, 0px) rotate(45deg);
+				}
+				&::before{
+					width: 25px;
+					transform: translate( 0px, -7px) rotate(-45deg);
+				}
+			}
+		}
+	}
+	#{&}-list{
+		@include flex(row,flex-start);
+		@include transition;
+		visibility: hidden;
+		.navbar-item{
+			a{
+				@include hover(color(auxiliar));
+				@include transition;
+			}
+			font-size:120%;
+			padding:20px;
+		}
+	}
+	&.active #{&}-list{
+		visibility: visible;
+		@include transition;
+	}
+}
